@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: dachel 
+  tasks: 
+  - name: ensure /etc/environment it setup poperly
+    template: src=./templates/environment dest=/etc/environment
+    become: yes
+    become_method: sudo
+  - name: ensure /etc/profile.d/proxy.sh is set up properly
+    template: src=./templates/proxy.sh dest=/etc/profile.d/proxy.sh
+    become: yes
+    become_method: sudo
+  - name: move default docker storage location
+    script: ./scripts/docker_storage.sh
+    become: yes
+    become_method: sudo
