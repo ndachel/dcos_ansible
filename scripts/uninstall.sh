@@ -1,0 +1,13 @@
+rm -rf /var/lib/zookeeper
+rm -rf /var/lib/mesosphere
+rm -rf /var/lib/mesos
+rm -rf /var/log/mesos
+rm -rf /etc/mesosphere
+rm -rf /tmp/nginx-mesos-cache
+rm -rf /var/lib/dcos
+rm -rf /etc/systemd/system/multi-user.target.wants/dcos-setup.service
+rm -rf /etc/systemd/system/multi-user.target.wants/dcos.target
+rm -rf /etc/systemd/system/dcos-link-env.service
+rm -rf /etc/systemd/system/dcos-download.service
+rm -rf /etc/systemd/system/dcos-setup.service
+rm -rf /etc/systemd/journald.conf.d/dcos.conf

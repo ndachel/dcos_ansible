@@ -10,6 +10,14 @@
     template: src=./templates/proxy.sh dest=/etc/profile.d/proxy.sh
     become: yes
     become_method: sudo
+  - name: ensure /etc/systemd/system/docker.service.d/http-proxy.conf is setup properly
+    template: src=./templates/http-proxy.conf dest=/etc/systemd/system/docker.service.d/http-proxy.conf
+    become: yes
+    become_method: sudo
+  - name: restart docker
+    script: ./scripts/docker_restart.sh
+    become: yes
+    become_method: sudo
   - name: move default docker storage location
     script: ./scripts/docker_storage.sh
     become: yes

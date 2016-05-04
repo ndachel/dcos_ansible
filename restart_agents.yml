@@ -1,0 +1,8 @@
+---
+- hosts: agents 
+  remote_user: dachel 
+  tasks: 
+  - name:  
+    script: ./scripts/restart.sh
+    become: yes
+    become_method: sudo

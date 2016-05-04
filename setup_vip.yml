@@ -1,0 +1,11 @@
+---
+- hosts: masters 
+  remote_user: dachel 
+  tasks: 
+  - name: add VIP to masters
+    template: src={{item.src}} dest={{item.dest}}
+    become: yes
+    become_method: sudo
+    with_items:
+      - { src: 'vip/ifcfg-eth0:0', dest: '/etc/sysconfig/network-scripts/ifcfg-eth0:0'}
+      - { src: 'vip/ifcfg-eth0:1', dest: '/etc/sysconfig/network-scripts/ifcfg-eth0:1'}

@@ -1,0 +1,8 @@
+---
+- hosts: masters 
+  remote_user: dachel 
+  tasks: 
+  - name:  
+    script: ./scripts/uninstall.sh
+    become: yes
+    become_method: sudo
