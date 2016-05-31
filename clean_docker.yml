@@ -7,4 +7,3 @@
     register: clean
     become: no
     become_method: sudo
-  - debug: msg="{{clean.stdout}}"
