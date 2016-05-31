@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: dachel 
+  tasks: 
+  - name: remove exited containers
+    script: ./scripts/clean_containers.sh
+    register: clean
+    become: no
+    become_method: sudo
+  - debug: msg="{{clean.stdout}}"

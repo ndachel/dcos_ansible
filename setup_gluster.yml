@@ -1,0 +1,27 @@
+---
+- hosts: agents
+  remote_user: dachel
+  tasks:
+  - name: Setup Mount point
+    file: path=/opt/mount1/gluster state=directory mode=0755
+    become: yes
+    become_method: sudo
+  - name: Yum install gluster stuff
+    yum: name={{item}} state=installed
+    with_items: 
+      - fuse
+      - fuse-libs
+      - libibverbs
+      - glusterfs
+      - glusterfs-fuse
+      - glusterfs-rdma
+    become: yes
+    become_method: sudo
+  - name: Put the gluster volume in fstab
+    mount: name=/opt/mount1/gluster src=dcos-master-1:/mesosvol fstype=glusterfs state=present
+    become: yes
+    become_method: sudo
+  - name: Mount the gluster volume
+    mount: name=/opt/mount1/gluster src=dcos-master-1:/mesosvol fstype=glusterfs state=mounted
+    become: yes
+    become_method: sudo
