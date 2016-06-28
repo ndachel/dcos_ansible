@@ -1,0 +1,16 @@
+---
+- hosts: [agents]
+  remote_user: dachel 
+  tasks: 
+  - name: install topbeat
+    script: ./scripts/install_topbeat.sh
+    become: yes
+    become_method: sudo
+  - name: ensure /etc/topbeat/topbeat.yml is setup properly
+    template: src=./templates/topbeat.yml dest=/etc/topbeat/topbeat.yml
+    become: yes
+    become_method: sudo
+  - name: start/enable topbeat
+    script: ./scripts/start_topbeat.sh
+    become: yes
+    become_method: sudo

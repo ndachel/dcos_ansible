@@ -1,0 +1,8 @@
+---
+- hosts: [agents]
+  remote_user: dachel 
+  tasks: 
+  - name: stop topbeat
+    script: ./scripts/stop_topbeat.sh
+    become: yes
+    become_method: sudo

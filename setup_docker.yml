@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: [dcos-agent-5, dcos-agent-6]
   remote_user: dachel 
   tasks: 
   - name: ensure /etc/systemd/system/docker.service.d/http-proxy.conf is setup properly

@@ -1,0 +1,26 @@
+input:
+  period: 10
+  procs: [".*"]
+  stats:
+    system: true
+    process: true
+    filesystem: true
+    cpu_per_core: true
+
+output:
+  elasticsearch:
+    hosts: ["dcos-monitor:9200"]
+    template:
+      path: "topbeat.template.json"
+      overwrite: false
+
+shipper:
+  # The tags of the shipper are included in their own field with each
+  # transaction published. Tags make it easy to group servers by different
+  # logical properties.
+  tags: ["dcos-agent"]
+
+logging:
+  files:
+    rotateeverybytes: 10485760 # = 10MB
+
