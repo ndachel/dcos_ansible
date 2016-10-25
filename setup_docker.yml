@@ -1,5 +1,5 @@
 ---
-- hosts: [dcos-agent-5, dcos-agent-6]
+- hosts: [agents]
   remote_user: dachel 
   tasks: 
   - name: ensure /etc/systemd/system/docker.service.d/http-proxy.conf is setup properly
@@ -8,6 +8,10 @@
     become_method: sudo
   - name: ensure /etc/systemd/system/docker.service.d/override.conf is setup properly
     template: src=./templates/override.conf dest=/etc/systemd/system/docker.service.d/override.conf
+    become: yes
+    become_method: sudo
+  - name: setup docker socket for 1.12 on CentOS
+    template: src=./templates/docker.socket/ dest=/usr/lib/systemd/system/docker.socket
     become: yes
     become_method: sudo
   - name: restart docker
